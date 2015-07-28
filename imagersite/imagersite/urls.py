@@ -17,12 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from imagersite import views
+from imagersite.views import ClassView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'views.home_view', name='homepage'),
-    url(r'^(?P<num>\d+)/(?P<name>\w*)/', views.ClassView.as_view(), name="test"),
+    url(r'^$', 'imagersite.views.home_view', name='homepage'),
+    url(r'^(?P<num>\d+)/(?P<name>\w*)/', ClassView.as_view(), name="test"),
 ]
 
 if settings.DEBUG:
