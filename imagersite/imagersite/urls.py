@@ -17,11 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-import views
+from .views import HomeView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'imagersite.views.home_view', name='homepage'),
+    url(r'^$', HomeView.as_view(), name='homepage'),
 ]
 
 if settings.DEBUG:
