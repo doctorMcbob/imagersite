@@ -87,8 +87,8 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
         'NAME': 'test',
         #was imager_databse
-        'USER': 'imageadmin',
-        'PASSWORD': 'imagepassword',
+        'USER': 'james',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
