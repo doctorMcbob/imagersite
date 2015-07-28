@@ -14,13 +14,13 @@ class UserFactory(factory.DjangoModelFactory):
 class PhotoFactory(factory.DjangoModelFactory):
     class Meta:
         model = Photos
-    user = UserFactory()
+    user = UserFactory(username='user')
 
 
 class AlbumFactory(factory.DjangoModelFactory):
     class Meta:
         model = Album
-    user = UserFactory()
+    user = UserFactory(username='user2')
 
 
 class TestPhoto(TestCase):
@@ -33,6 +33,9 @@ class TestPhoto(TestCase):
     def test_new_photo_discription(self):
         assert self.photo.description == ''
 
+    def test_photo_access(self):
+        assert self.photo.published == "private"
+
 
 class TestAlbum(TestCase):
     def setUp(self):
@@ -41,4 +44,6 @@ class TestAlbum(TestCase):
 
     def test_album_user(self):
         assert self.album.user is not None
-        assert self.album.user is self.photo.user
+
+    def test_album_access(self):
+        assert self.album.published == "private"

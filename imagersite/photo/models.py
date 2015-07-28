@@ -17,7 +17,7 @@ class Photos(models.Model):
     )
     date_uploaded = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
-    date_published = models.DateField()
+    date_published = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -27,7 +27,7 @@ class Photos(models.Model):
 class Album(models.Model):
     user = models.ForeignKey(User, null=False)
     photos = models.ManyToManyField(Photos, related_name='albums')
-    cover = models.ForeignKey(Photos, related_name='cover_for')
+    cover = models.ForeignKey(Photos, related_name='cover_for', null=True)
 
     title = models.CharField(max_length=256)
     description = models.TextField()
@@ -38,7 +38,7 @@ class Album(models.Model):
     )
     date_uploaded = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
-    date_published = models.DateField()
+    date_published = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
