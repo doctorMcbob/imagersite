@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from imagersite.views import ClassView
+from django.core.mail import send_mail
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'imagersite.views.home_view', name='homepage'),
     url(r'^(?P<num>\d+)/(?P<name>\w*)/', ClassView.as_view(), name="test"),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
 
 if settings.DEBUG:
