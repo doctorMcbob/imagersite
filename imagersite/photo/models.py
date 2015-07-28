@@ -10,6 +10,11 @@ class Photos(models.Model):
     user = models.ForeignKey(User, null=False)
     title = models.CharField(max_length=256)
     description = models.TextField()
+    published = models.CharField(
+        max_length=256,
+        choices=(('private', 'private'), ('public', 'public')),
+        default='private'
+    )
     date_uploaded = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField()
@@ -21,11 +26,16 @@ class Photos(models.Model):
 @python_2_unicode_compatible
 class Album(models.Model):
     user = models.ForeignKey(User, null=False)
-    photos = models.ForeignKey(Photos, related_name='albums')
+    photos = models.ManyToManyField(Photos, related_name='albums')
     cover = models.ForeignKey(Photos, related_name='cover_for')
 
     title = models.CharField(max_length=256)
     description = models.TextField()
+    published = models.CharField(
+        max_length=256,
+        choices=(('private', 'private'), ('public', 'public')),
+        default='private'
+    )
     date_uploaded = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField()
