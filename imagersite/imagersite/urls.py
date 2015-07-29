@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='homepage'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    # url(r'^accounts/login', include('registration.backends.default.urls')),
+    # url(r'^accounts/logout', include('registration.backends.default.urls')),
     url(r'^profile/', include('imagerprofile.urls'))
 ]
 
