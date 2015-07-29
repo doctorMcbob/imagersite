@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <main>
+    <h3>{{ user.username }}</h3>
+    {% if user.profile.website %}
+      <a href="{{ user.profile.website }}"> {{ user.profile.website }} </a>
+    {% endif %}
+    <div id='userinfo'>
+      <p>Photographer Type: {{ user.profile.photo_type }}</p>
+      <p>Favorite Camera: {{ user.profile.fav_camera }}</p>
+      <p>Albums: {{ user.profile.albums.count }}</p>
+      <p>Photos: {{ user.profile.photos.count }}</p>
+    </div>
+  </main>
+{% endblock %}
+
+{% block nav %}
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="../profile">Profiles</a></li>
+  </ul>
+{% endblock %}

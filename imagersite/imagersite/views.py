@@ -9,5 +9,4 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context["photo"] = Photos.objects.filter(published='public')\
             .order_by('?').first()
-        print context["photo"]
         return context
