@@ -20,12 +20,12 @@ class ImagerProfile(models.Model):
     )
     photos = models.ManyToManyField(
         Photos,
-        related_name='photos',
+        related_name='user_photos',
         null=True,
     )
     albums = models.ManyToManyField(
         Album,
-        related_name='albums',
+        related_name='user_albums',
         null=True,
     )
     fav_camera = models.CharField(
