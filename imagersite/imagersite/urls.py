@@ -17,7 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from imagersite.views import ClassView
 from django.core.mail import send_mail
 from .views import HomeView
 
