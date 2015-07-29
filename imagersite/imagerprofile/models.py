@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.contrib.auth.models import User
+from photo.models import Photos, Album
 
 
 class ActiveProfileManager(models.Manager):
@@ -16,6 +17,16 @@ class ImagerProfile(models.Model):
         User,
         related_name="profile",
         null=False,
+    )
+    photos = models.ManyToManyField(
+        Photos,
+        related_name='photos',
+        null=True,
+    )
+    albums = models.ManyToManyField(
+        Album,
+        related_name='albums',
+        null=True,
     )
     fav_camera = models.CharField(
         max_length=256,
