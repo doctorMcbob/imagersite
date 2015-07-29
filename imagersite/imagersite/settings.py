@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'imagerprofile',
-    'photo'
+    'photo',
+    'debug_toolbar',
 )
 
 # registration redux
