@@ -9,4 +9,7 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context["photo"] = Photos.objects.filter(published='public')\
             .order_by('?').first()
+        #returns pic of dog if above is context is false/att error
+        except AttributeError:
+        context["photo"] = 'imagersite/media/photo_files/15-07-28/dog.jpg'
         return context
