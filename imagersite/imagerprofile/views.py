@@ -8,5 +8,8 @@ def all_profiles_page(request):
 
 
 def profile_page(request, user_id=1):
-    user = User.objects.get(id=user_id)
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return render(request, '404.html')
     return render(request, 'profilepage.html', context={'user': user})
