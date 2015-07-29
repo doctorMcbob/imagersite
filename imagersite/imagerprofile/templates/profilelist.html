@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+	<main>
+    <ul>
+      {% for user in users %}
+        <li>
+          <a href='{{ user.profile.id }}'> {{ user.username }} </a>
+        </li>
+      {% endfor %}
+    </ul>
+	</main>
+{% endblock %}
+
+{% block nav %}
+  <ul>
+    <li><a href="/">Home</a></li>
+  </ul>
+{% endblock %}
