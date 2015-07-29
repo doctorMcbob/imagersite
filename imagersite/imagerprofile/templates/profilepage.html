@@ -9,8 +9,8 @@
     <div id='userinfo'>
       <p>Photographer Type: {{ user.profile.photo_type }}</p>
       <p>Favorite Camera: {{ user.profile.fav_camera }}</p>
-      <p>Albums: {{ user.profile.albums }}</p>
-      <p>Photos: {{ user.profile.photos }}</p>
+      <p>Albums: {{ user.profile.albums.count }}</p>
+      <p>Photos: {{ user.profile.photos.count }}</p>
     </div>
   </main>
 {% endblock %}
