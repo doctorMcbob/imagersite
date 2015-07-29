@@ -1,4 +1,4 @@
-from django.conf.url import url
+from django.conf.urls import url
 from .views import library_view, album_view, photo_view
 
 urlpatterns = [
