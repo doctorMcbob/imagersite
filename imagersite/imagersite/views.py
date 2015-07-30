@@ -1,7 +1,6 @@
 from django.views.generic import TemplateView
 from photo.models import Photos
 
-
 class HomeView(TemplateView):
     template_name = 'home.html'
 
@@ -14,3 +13,4 @@ class HomeView(TemplateView):
         except AttributeError:
             context["photo"] = 'imagersite/media/photo_files/15-07-28/dog.jpg'
         return context
+
