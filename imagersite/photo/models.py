@@ -26,7 +26,7 @@ class Photos(models.Model):
 @python_2_unicode_compatible
 class Album(models.Model):
     user = models.ForeignKey(User, null=False)
-    photos = models.ManyToManyField(Photos, related_name='albums')
+    photos = models.ManyToManyField(Photos, related_name='photo_albums')
     cover = models.ForeignKey(Photos, related_name='cover_for', null=True)
 
     title = models.CharField(max_length=256)

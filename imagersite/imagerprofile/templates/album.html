@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <main>
+    <div class='album'>
+      <img src="{{ MEDIA_ROOT }}{{ album.cover.image.url }}">
+      <ul>
+        {% for photo in album.photos %}
+          <li>
+            {% include "include_photo.html" %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+{% endblock %}
+
+{% block nav %}
+  <ul>
+    <li><a href="../../profile">Profiles</a></li>
+  </ul>
+{% endblock %}
