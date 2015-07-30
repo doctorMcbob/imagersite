@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+def show_toolbar(request):
+    return True
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
+# DELETE THAT TOO Before depploy^
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -40,6 +48,7 @@ INSTALLED_APPS = (
     'registration',
     'imagerprofile',
     'photo',
+    #delete this before deploying V
     'debug_toolbar',
 )
 
@@ -56,6 +65,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    #delete this before deploying
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imagersite.urls'
