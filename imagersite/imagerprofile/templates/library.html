@@ -5,7 +5,12 @@
     <div class='library'>
       <ul>
         {% for album in albums %}
-          <li><img src="{{ MEDIA_ROOT }}{{ album.cover.image.url }}"></li>
+          <li>
+            <a>
+              <img src="{{ MEDIA_ROOT }}{{ album.cover.image.url }}">
+              <p>{{ album.title }} by {{ album.user.username }}</p>
+            </a>
+          </li>
         {% endfor %}
       </ul>
     </div>

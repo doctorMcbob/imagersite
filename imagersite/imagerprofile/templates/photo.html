@@ -2,9 +2,8 @@
 
 {% block main %}
   <main>
-    <div class='individual_photo'>
-        <img src="{{ MEDIA_ROOT }}{{ photo.image.url }}">
-    </div>
+    {% include "include_photo.html" %}
+    <p> Photo taken by <a href="../../profile/{{ photo.user.id }}"></a> {{ photo.user.username }} </p>
   </main>
 {% endblock %}
 
