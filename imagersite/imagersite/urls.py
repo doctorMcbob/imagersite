@@ -23,14 +23,10 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='homepage'),
     url(r'^accounts/', include('registration.backends.default.urls')),
-<<<<<<< HEAD
     # url(r'^accounts/login', include('registration.backends.default.urls')),
     # url(r'^accounts/logout', include('registration.backends.default.urls')),
-    url(r'^profile/', include('imagerprofile.urls'))
-=======
     url(r'^profile/', include('imagerprofile.urls')),
     url(r'^images/', include('photo.urls'))
->>>>>>> 11c5541095bdd4a22c4b731716efd38e793dec64
 ]
 
 if settings.DEBUG:

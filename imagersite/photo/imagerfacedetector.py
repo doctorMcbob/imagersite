@@ -2,13 +2,6 @@ import Algorithmia
 import base64
 
 
-input = <somefile.jpg>
-request = urllib2.Request('https://api.algorithmia.com/v1/algo/ANaimi/FaceDetection/0.1.0')
-request.add_header('Content-Type', 'application/json')
-request.add_header('Authorization', 'API_KEY')
-response = urllib2.urlopen(request, json.dumps(input))
-print response.read()
-
 API_KEY = 'insert later'
 
 
