@@ -97,9 +97,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
+<<<<<<< HEAD
         'NAME': 'test',
         #was imager_databse
         'USER': 'james',
+=======
+        'NAME': 'imager',
+        # was imager_databse
+        'USER': 'wesleywooten',
+>>>>>>> 11c5541095bdd4a22c4b731716efd38e793dec64
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',

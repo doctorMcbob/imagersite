@@ -17,16 +17,20 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.core.mail import send_mail
 from .views import HomeView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='homepage'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+<<<<<<< HEAD
     # url(r'^accounts/login', include('registration.backends.default.urls')),
     # url(r'^accounts/logout', include('registration.backends.default.urls')),
     url(r'^profile/', include('imagerprofile.urls'))
+=======
+    url(r'^profile/', include('imagerprofile.urls')),
+    url(r'^images/', include('photo.urls'))
+>>>>>>> 11c5541095bdd4a22c4b731716efd38e793dec64
 ]
 
 if settings.DEBUG:
