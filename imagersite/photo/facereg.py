@@ -28,4 +28,17 @@ def get_faces(path):
         face.width = rect['width']
         face.height = rect['height']
         faces.append(face)
-        return faces
+    return faces
+
+
+def set_faces(request, id):
+    if request.method != 'POST':
+        return HttpResponse("Method must be POST")
+
+    photo = Photo.objects.get(id=id)
+    fid = request.POST.get('id', 0)
+    face = Face.objects.get('id'=fid)
+    face.name = request.POST.get('name', 'unknown')
+    face.save()
+
+    return HttpResponse("Done.")
