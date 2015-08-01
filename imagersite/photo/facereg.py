@@ -42,3 +42,13 @@ def set_faces(request, id):
     face.save()
 
     return HttpResponse("Done.")
+
+# <script type="text/javescript">
+#     Face.Tagger.init:
+#         labelUR:: "contains"
+
+
+
+
+
+

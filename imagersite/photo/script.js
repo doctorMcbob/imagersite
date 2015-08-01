@@ -6,13 +6,15 @@
         originalWidth: {{photo.image.width}},
         originalHeight: {{photo.image.height}},
         newWidth: $("#photo-container img").width(),
-        
-
-
-
-        pass
+        newHeight: $("#photo-container img").height(),
     });
 
 //optical character reg
+    {% for f in faces %}
 
+        var face = {
+            id: {{{f.id}}}
+            name: "{{f.name}}"
+        }
+        
 </script>
