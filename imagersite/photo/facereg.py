@@ -1,16 +1,16 @@
 import Algorithmia
 import base64
+import requests
 
+# input = <somefile.jpg>
+# request = urllib2.Request('https://api.algorithmia.com/v1/algo/ANaimi/FaceDetection/0.1.0')
+# request.add_header('Content-Type', 'application/json')
+# request.add_header('Authorization', 'API_KEY')
+# response = urllib2.urlopen(request, json.dumps(input))
+# print response.read()
 
-input = <somefile.jpg>
-request = urllib2.Request('https://api.algorithmia.com/v1/algo/ANaimi/FaceDetection/0.1.0')
-request.add_header('Content-Type', 'application/json')
-request.add_header('Authorization', 'API_KEY')
-response = urllib2.urlopen(request, json.dumps(input))
-print response.read()
-
-API_KEY = 'insert later'
-
+# API_KEY = 'insert later'
+"""above should go to different location call"""
 
 def get_faces(path):
     with open(path, 'rb') as img:
@@ -36,9 +36,9 @@ def set_faces(request, id):
         return HttpResponse("Method must be POST")
 
     photo = Photo.objects.get(id=id)
-    fid = request.POST.get('id', 0)
-    face = Face.objects.get('id'=fid)
-    face.name = request.POST.get('name', 'unknown')
+    fid = request.POST.get('id', '0')
+    face = Face.objects.get(id=fid)
+    face.name = request.POST.get('name', 'Unknown')
     face.save()
 
     return HttpResponse("Done.")
@@ -62,7 +62,7 @@ def connections(request):
         n['imports'] = list(set(n['imports']))
         n['imports'].remove(n('name'))
 
-    return JasonRespone(list(conn), safe False)
+    return JasonRespone(list(conn), safe = False)
 
 
 
