@@ -43,6 +43,15 @@ def set_faces(request, id):
 
     return HttpResponse("Done.")
 
+
+def connections(request):
+    conn = Face.objects.values('name').distinct()
+    names = map(lambda x: x['name'], conn)
+
+    for n in conn:
+        n['imports'] = []
+
+    for 
 # <script type="text/javescript">
 #     Face.Tagger.init:
 #         labelUR:: "contains"
