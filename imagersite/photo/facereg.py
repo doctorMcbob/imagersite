@@ -63,7 +63,3 @@ def connections(request):
         n['imports'].remove(n('name'))
 
     return JasonRespone(list(conn), safe = False)
-
-
-
-
