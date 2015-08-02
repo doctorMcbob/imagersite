@@ -51,12 +51,18 @@ def connections(request):
     for n in conn:
         n['imports'] = []
 
-    for 
-# <script type="text/javescript">
-#     Face.Tagger.init:
-#         labelUR:: "contains"
+    for p in Photo.objects.all():
+        faces = p.faces()
+        for f in faces:
+            all_names = map(lambda x: x.name, faces)
+            curr_name = filter(lambda x: x['name'] == f.name, conn) [0]
+            curr_name['imports'] += all_names
 
+    for n in conn:
+        n['imports'] = list(set(n['imports']))
+        n['imports'].remove(n('name'))
 
+    return JasonRespone(list(conn), safe False)
 
 
 
