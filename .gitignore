@@ -1,8 +1,3 @@
-# Photos
-media/photo_files
-!media/test/*
-*/imagersite/media/photo_files
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
