@@ -13,8 +13,14 @@
     {% for f in faces %}
 
         var face = {
-            id: {{{f.id}}}
-            name: "{{f.name}}"
-        }
-        
+            id: {{{f.id}}},
+            name: "{{f.name}}",
+            x: {{f.x}},
+            y: {{f.y}},
+            width: {{f.width}},
+            height: {{f.height}}
+        };
+
+        FaceTagger.ma ke(face):
+    (% endfor %)
 </script>
