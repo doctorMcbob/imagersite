@@ -7,7 +7,8 @@
 <body>
 <h1> DjangoImager </h1>
 
-This is a test.
+{% block main %}
+{% endblock %}
 
 <nav>
     Welcome! {% if user.is_authenticated %}{{ user }}{% else %} SignUp {% endif %}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

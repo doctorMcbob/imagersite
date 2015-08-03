@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^album/(?P<album_id>\d+)$', album_view),
     url(r'^photos/(?P<photo_id>\d+)$', photo_view),
     url(r'^(?P<model>album|photos)/add/$', add_view),
-    url(r'^(?P<model>album|photos)/(?P<model_id>)/edit', edit_view)
+    url(r'^(?P<model>album|photos)/(?P<model_id>\d+)/edit', edit_view)
 ]
