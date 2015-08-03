@@ -1,8 +1,10 @@
 from django.conf.urls import url
-from .views import library_view, album_view, photo_view
+from .views import album_view, photo_view, library_view, add_view, edit_view
 
 urlpatterns = [
-    url(r'library/$', library_view),
-    url(r'album/(?P<album_id>\d+)$', album_view),
-    url(r'photos/(?P<photo_id>\d+)$', photo_view)
+    url(r'^library/$', library_view),
+    url(r'^album/(?P<album_id>\d+)$', album_view),
+    url(r'^photos/(?P<photo_id>\d+)$', photo_view),
+    url(r'^(?P<model>album|photos)/add/$', add_view),
+    url(r'^(?P<model>album|photos)/(?P<model_id>)/edit', edit_view)
 ]
