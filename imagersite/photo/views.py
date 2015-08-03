@@ -42,8 +42,55 @@ def add_view(request, model="photos"):
 
     if request.method == "POST":
         if form.is_valid():
-            photo = form.save()
-            return render(request, 'photo.html', context={'photo': photo})
+            the_model = form.save()
+            if model == "photos":
+                return render(request, 'photo.html', context={
+                    'photo': the_model
+                })
+            elif model == "album":
+                return render(request, 'album.html', context={
+                    'album': the_model
+                })
 
     elif request.method == "GET":
-        return render(request, 'add.html', context={'form': form, 'model': model})
+        return render(request, 'add.html', context={
+            'form': form,
+            'model': model
+        })
+
+
+def edit_view(request, model="photos", model_id=0):
+    if not request.user.is_authenticated():
+        return redirect('/accounts/login')
+
+    if model == "photos":
+        the_model = Photos.objects.get(pk=model_id)
+        form = PhotoForm(request.user, request.POST, instance=the_model)
+    elif model == "album":
+        the_model = Album.objects.get(pk=model_id)
+        form = AlbumForm(request.user, request.POST, instance=the_model)
+    else:
+        raise ValueError("Expected 'photos' or 'album'/ got " + model)
+
+    if request.user is not the_model.user:
+        return render(request, 'error.html', context={
+            "error_type": "403 forbidden"
+        })
+
+    if request.method == "POST":
+        if form.is_valid():
+            the_model = form.save()
+            if model == "photos":
+                return render(request, 'photo.html', context={
+                    'photo': the_model
+                })
+            elif model == "album":
+                return render(request, 'album.html', context={
+                    'album': the_model
+                })
+
+    elif request.method == "GET":
+        return render(request, 'edit.html', context={
+            'form': form,
+            'item': the_model
+        })
