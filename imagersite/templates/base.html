@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+
     <title>DjangoImager</title>
 </head>
-<body>
 <h1> DjangoImager </h1>
-
-This is a test.
-
 <nav>
     Welcome! {% if user.is_authenticated %}{{ user }}{% else %} SignUp {% endif %}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="{% url 'homepage' %}">home</a>
@@ -23,5 +23,4 @@ This is a test.
 {% block content %}
 {% endblock %}
 <footer class="text-center"> Make it a Django moment. </footer>
-</body>
 </html>
