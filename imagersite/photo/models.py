@@ -4,6 +4,20 @@ from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 
 
+PRIVACY = [('Private', 'Private'),
+           ('Shared', 'Shared'),
+           ('Public', 'Public')]
+
+
+@python_2_unicode_compatible
+class Face(models.Model):
+    name = models.CharField(max_length=128, blank=True, null=True)
+    x = models.IntegerField()
+    y = models.IntegerField()
+    width = models.IntegerField()
+    height = models.IntegerField()
+
+
 @python_2_unicode_compatible
 class Photos(models.Model):
     image = models.ImageField(upload_to='photo_files/%y-%m-%d')

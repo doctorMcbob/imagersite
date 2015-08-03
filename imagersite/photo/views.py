@@ -3,6 +3,38 @@ from .models import Album, Photos
 from .forms import PhotoForm, AlbumForm
 
 
+def get_faces(path):
+    with open(path, 'rb') as img:
+        bimage = base64.b64encode(img.read())
+
+    Algorithmia.apiKey = 'API_KEY'
+    result = Algorithmia.algo('/algo/ANaimi/FaceDetection/0.1.0').pipe(biamge)
+
+    faces = []
+    for rect in result:
+        face = Face()
+        face.name = person_name()
+        face.x = rect['x']
+        face.y = rect['y']
+        face.width = rect['width']
+        face.height = rect['height']
+        faces.append(face)
+    return faces
+
+
+def set_faces(request, id):
+    if request.method != 'POST':
+        return HttpResponse("Method must be POST")
+
+    photo = Photo.objects.get(id=id)
+    fid = request.POST.get('id', '0')
+    face = Face.objects.get(id=fid)
+    face.name = request.POST.get('name', 'Unknown')
+    face.save()
+
+    return HttpResponse("Done.")
+
+
 def library_view(request):
     albums = Album.objects.filter(published='public').all()
     return render(request, 'library.html', context={'albums': albums})
