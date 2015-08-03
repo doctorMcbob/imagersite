@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Album, Photos
+from .forms import PhotoForm, AlbumForm
 
 
 def library_view(request):
@@ -26,3 +27,23 @@ def photo_view(request, photo_id=0):
     if photo.published != 'public':
         render(request, 'error.html', context={'error_type': '403 Forbiddon'})
     return render(request, 'photo.html', context={'photo': photo})
+
+
+def add_view(request, model="photos"):
+    if not request.user.is_authenticated():
+        return redirect('/accounts/login')
+
+    if model == 'photos':
+        form = PhotoForm(request.user, request.POST)
+    elif model == 'album':
+        form = AlbumForm(request.user, request.POST)
+    else:
+        raise ValueError("Expected 'photos' or 'album'. got " + model)
+
+    if request.method == "POST":
+        if form.is_valid():
+            photo = form.save()
+            return render(request, 'photo.html', context={'photo': photo})
+
+    elif request.method == "GET":
+        return render(request, 'add.html', context={'form': form, 'model': model})
