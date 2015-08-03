@@ -9,7 +9,6 @@ PRIVACY = [('Private', 'Private'),
            ('Public', 'Public')]
 
 
-@python_2_unicode_compatible
 class Face(models.Model):
     name = models.CharField(max_length=128, blank=True, null=True)
     x = models.IntegerField()
