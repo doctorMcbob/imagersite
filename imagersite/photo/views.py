@@ -89,8 +89,7 @@ def edit_view(request, model="photos", model_id=0):
                     'album': the_model
                 })
 
-    elif request.method == "GET":
-        return render(request, 'edit.html', context={
-            'form': form,
-            'item': the_model
-        })
+    return render(request, 'edit.html', context={
+        'form': form,
+        'item': the_model
+    })
