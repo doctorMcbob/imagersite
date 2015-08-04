@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h3>Create new {{ model }}</h3>
+  <form id="form">
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}
+
+
+{% block nav %}
+  <ul>
+    <li><a href="../profile">Profiles</a></li>
+    <li><a href="../images/library">Library</a></li>
+  </ul>
+{% endblock %}

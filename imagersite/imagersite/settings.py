@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+def show_toolbar(request):
+    return True
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
+# DELETE THAT TOO Before depploy^
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,7 +47,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'imagerprofile',
-    'photo'
+    'photo',
+    #delete this before deploying V
+    'debug_toolbar',
 )
 
 # registration redux
@@ -55,6 +65,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    #delete this before deploying
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imagersite.urls'
@@ -87,7 +99,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
         'NAME': 'test',
         #was imager_databse
-        'USER': 'wesleywooten',
+        'USER': 'james',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',

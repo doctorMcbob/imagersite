@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+<h3>
+    {% if user.is_authenticated %}
+        <h2> Welcome to DjangoImager! <h2>
+    {% else %}
+        <h3> Register and have unlimited and safe access to photos </h3>
+    {% endif %}
+</h3>
+    <div class="img-responsive center-block">
+        <img class="img-responsive center-block" src="{{ MEDIA_URL }}{{ pic_url }}">
+    </div>
+</body>
+
+{% endblock %}

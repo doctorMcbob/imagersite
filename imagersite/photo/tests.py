@@ -1,7 +1,7 @@
 from django.test import TestCase
+from django.contrib.auth import models
 from .models import Photos, Album
 import factory
-from . import models
 
 
 class UserFactory(factory.DjangoModelFactory):
@@ -14,13 +14,13 @@ class UserFactory(factory.DjangoModelFactory):
 class PhotoFactory(factory.DjangoModelFactory):
     class Meta:
         model = Photos
-    user = UserFactory(username='user')
+    user = factory.SubFactory(UserFactory)
 
 
 class AlbumFactory(factory.DjangoModelFactory):
     class Meta:
         model = Album
-    user = UserFactory(username='user2')
+    user = factory.SubFactory(UserFactory)
 
 
 class TestPhoto(TestCase):
@@ -39,8 +39,14 @@ class TestPhoto(TestCase):
 
 class TestAlbum(TestCase):
     def setUp(self):
-        self.photo = PhotoFactory.create()
-        self.album = AlbumFactory.create()
+        self.user = UserFactory.create()
+        self.photo = PhotoFactory.create(user=self.user)
+        self.album = AlbumFactory.create(user=self.user)
+
+    def tearDown(self):
+        self.user.delete()
+        self.photo.delete()
+        self.album.delete()
 
     def test_album_user(self):
         assert self.album.user is not None
