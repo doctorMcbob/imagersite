@@ -1,0 +1,29 @@
+.album ul {
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+}
+
+form label {
+  display: block;
+}
+
+.errorlist {
+  display: none;
+}
+
+.alert {
+  display: none;
+}
+
+#id_photos li{
+  display: inline;
+}
+
+#id_photos input{
+  display: inline-block;
+
+}
