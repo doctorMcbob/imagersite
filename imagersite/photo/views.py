@@ -9,6 +9,7 @@ def library_view(request):
 
 
 def album_view(request, album_id=0):
+    print Album.objects.all()
     try:
         album = Album.objects.get(id=album_id)
     except Album.DoesNotExist:
@@ -34,12 +35,11 @@ def add_view(request, model="photos"):
         return redirect('/accounts/login')
 
     if model == 'photos':
-        form = PhotoForm(request.user, request.POST)
+        form = PhotoForm(request.user, request.POST, request.FILES)
     elif model == 'album':
-        form = AlbumForm(request.user, request.POST)
+        form = AlbumForm(request.user, request.POST, request.FILES)
     else:
         raise ValueError("Expected 'photos' or 'album'. got " + model)
-
     if request.method == "POST":
         if form.is_valid():
             the_model = form.save()
@@ -52,11 +52,10 @@ def add_view(request, model="photos"):
                     'album': the_model
                 })
 
-    elif request.method == "GET":
-        return render(request, 'add.html', context={
-            'form': form,
-            'model': model
-        })
+    return render(request, 'add.html', context={
+        'form': form,
+        'model': model
+    })
 
 
 def edit_view(request, model="photos", model_id=0):
@@ -72,19 +71,21 @@ def edit_view(request, model="photos", model_id=0):
     else:
         raise ValueError("Expected 'photos' or 'album'/ got " + model)
 
-    if request.user is not the_model.user:
+    if request.user != the_model.user:
         return render(request, 'error.html', context={
             "error_type": "403 forbidden"
         })
 
     if request.method == "POST":
         if form.is_valid():
-            the_model = form.save()
             if model == "photos":
+                the_model = form.save()
                 return render(request, 'photo.html', context={
                     'photo': the_model
                 })
             elif model == "album":
+                print form.cleaned_data
+                the_model = form.save()
                 return render(request, 'album.html', context={
                     'album': the_model
                 })

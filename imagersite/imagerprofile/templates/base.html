@@ -4,13 +4,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <title>DjangoImager</title>
 </head>
-<body>
+<body class="text-center">
 <h1> DjangoImager </h1>
 
 {% block main %}
 {% endblock %}
 
 <nav>
+    {% block nav %}
+    {% endblock %}
     Welcome! {% if user.is_authenticated %}{{ user }}{% else %} SignUp {% endif %}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="{% url 'homepage' %}">home</a>
     {% if user.is_authenticated %}

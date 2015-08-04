@@ -3,7 +3,11 @@
 {% block main %}
   <main>
     <h3>Edit Your Profile</h3>
-    {{ form }}
+	  <form id="form" name="add" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" name="add" value="Submit">
+    </form>
   </main>
 {% endblock %}
 
