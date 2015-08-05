@@ -23,16 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&@i78447tmxgbotjp(_@cap#(kcqa+8!w=34vef2q@7l8b62$!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
 
-def show_toolbar(request):
-    return True
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
-}
+
 # DELETE THAT TOO Before depploy^
 
 
@@ -49,7 +45,6 @@ INSTALLED_APPS = (
     'imagerprofile',
     'photo',
     #delete this before deploying V
-    'debug_toolbar',
 )
 
 # registration redux
@@ -93,13 +88,20 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+#     )
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
         'NAME': 'test',
         #was imager_databse
-        'USER': 'wesleywooten',
+        'USER': 'james',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
