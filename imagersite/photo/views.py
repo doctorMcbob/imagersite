@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Album, Photos
+from facereg import get_faces
 
 
 def library_view(request):
@@ -25,4 +26,6 @@ def photo_view(request, photo_id=0):
                       context={'error_type': '404 Not Found'})
     if photo.published != 'public':
         render(request, 'error.html', context={'error_type': '403 Forbiddon'})
-    return render(request, 'photo.html', context={'photo': photo})
+    faces = get_faces(str(photo.image))
+    return render(request, 'photo.html',
+                  context={'photo': photo, 'faces': faces})

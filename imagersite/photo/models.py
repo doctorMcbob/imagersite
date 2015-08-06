@@ -12,6 +12,9 @@ class Face(models.Model):
     width = models.IntegerField()
     height = models.IntegerField()
 
+    def __str__(self):
+        self.name + "'s face."
+
 
 @python_2_unicode_compatible
 class Photos(models.Model):
