@@ -5,7 +5,25 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
+class Face(models.Model):
+    name = models.CharField(max_length=128, blank=True, null=True)
+    x = models.IntegerField()
+    y = models.IntegerField()
+    width = models.IntegerField()
+    height = models.IntegerField()
+
+    def __str__(self):
+        self.name + "'s face."
+
+
+@python_2_unicode_compatible
 class Photos(models.Model):
+    faces = models.ManyToManyField(
+        Face,
+        related_name='photos',
+        blank=True,
+        null=True
+    )
     image = models.ImageField(upload_to='photo_files/%y-%m-%d')
     user = models.ForeignKey(User, null=False)
     title = models.CharField(max_length=256)
