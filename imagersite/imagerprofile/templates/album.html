@@ -5,7 +5,7 @@
     <div class='album'>
       <img src="{{ MEDIA_ROOT }}{{ album.cover.image.url }}">
       <ul>
-        {% for photo in album.photos %}
+        {% for photo in album.photos.all %}
           <li>
             {% include "include_photo.html" %}
           </li>
@@ -17,6 +17,9 @@
 
 {% block nav %}
   <ul>
-    <li><a href="../../profile">Profiles</a></li>
+    {% if user == album.user %}
+    <li><a href="/images/album/{{ album.id }}/edit">Edit</a></li>
+    {% endif %}
+    <li><a href="/profile">Profiles</a></li>
   </ul>
 {% endblock %}

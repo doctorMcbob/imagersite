@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+def show_toolbar(request):
+    return True
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
+# DELETE THAT TOO Before depploy^
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,7 +47,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'imagerprofile',
-    'photo'
+    'photo',
+    #delete this before deploying V
+    'debug_toolbar',
 )
 
 # registration redux
@@ -55,6 +65,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    #delete this before deploying
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imagersite.urls'
@@ -85,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
-        'NAME': 'imager',
-        # was imager_databse
+        'NAME': 'test',
+        #was imager_databse
         'USER': 'wesleywooten',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
@@ -120,7 +132,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.sep.join([os.path.dirname(os.path.dirname(__file__)), 'static']),
+)
 
 # Media file handleing here
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

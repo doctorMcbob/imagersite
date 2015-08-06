@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('photo', '0001_initial'),
     ]
 
     operations = [
@@ -20,6 +21,8 @@ class Migration(migrations.Migration):
                 ('address', models.TextField(max_length=256, blank=True)),
                 ('url', models.URLField(blank=True)),
                 ('photo_type', models.CharField(max_length=256, blank=True)),
+                ('albums', models.ManyToManyField(related_name='albums', null=True, to='photo.Album')),
+                ('photos', models.ManyToManyField(related_name='photos', null=True, to='photo.Photos')),
                 ('user', models.OneToOneField(related_name='profile', to=settings.AUTH_USER_MODEL)),
             ],
         ),
