@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&@i78447tmxgbotjp(_@cap#(kcqa+8!w=34vef2q@7l8b62$!'
+    #^ change to os.environ.get(...later)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -45,6 +46,9 @@ INSTALLED_APPS = (
     'imagerprofile',
     'photo',
     #delete this before deploying V
+    'debug_toolbar',
+    'djgeojson',
+    'django.contrib.gis',
 )
 
 # registration redux
@@ -77,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -97,8 +102,8 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': os.path.join(BASE_DIR, 'db.postgresql_psycopg2'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        # 'NAME': os.path.join(BASE_DIR, 'db.postgis'),
         'NAME': 'test',
         #was imager_databse
         'USER': 'james',
