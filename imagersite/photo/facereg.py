@@ -5,6 +5,7 @@ from imagersite.settings import MEDIA_ROOT
 
 
 def get_faces(path):
+    print "getting faces"
     path = MEDIA_ROOT + "/" + path
     with open(path, 'rb') as img:
         bimage = base64.b64encode(img.read())
@@ -14,6 +15,7 @@ def get_faces(path):
 
     faces = []
     for rect in result:
+        print "found face"
         face = Face()
         face.name = "Anon"
         face.x = rect['x']

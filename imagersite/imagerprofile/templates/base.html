@@ -11,8 +11,17 @@
 {% endblock %}
 
 <nav>
-    {% block nav %}
-    {% endblock %}
+    <ul>
+        <li><a href="{% url 'profile_list' %}">Profiles</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'add_page' model='photos' %}">Add Photo</a></li>
+        <li><a href="{% url 'add_page' model='album' %}">Add Album</a></li>
+        <li><a href="{% url 'profile_page' user_id=user.id %}">My Profile</a></li>
+        {% endif %}
+        <li><a href="{% url 'library_page' %}">Library</a></li>
+        {% block nav %}
+        {% endblock %}
+    </ul>
     Welcome! {% if user.is_authenticated %}{{ user }}{% else %} SignUp {% endif %}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="{% url 'homepage' %}">home</a>
     {% if user.is_authenticated %}
