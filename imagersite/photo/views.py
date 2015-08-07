@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Album, Photos
+from .models import Album, Photos, Face
 from facereg import get_faces
 from .forms import PhotoForm, AlbumForm
+from django.http import HttpResponse
 
 
 def library_view(request):
@@ -10,7 +11,6 @@ def library_view(request):
 
 
 def album_view(request, album_id=0):
-    print Album.objects.all()
     try:
         album = Album.objects.get(id=album_id)
     except Album.DoesNotExist:
@@ -18,6 +18,16 @@ def album_view(request, album_id=0):
                       context={'error_type': '404 Not Found'})
         render(request, 'error.html', context={'error_type': '403 Forbiddon'})
     return render(request, 'album.html', context={'album': album})
+
+
+def faces_view(request, photo_id=0):
+    print "id" in request.POST
+    print request.POST
+    face_id = request.POST.get('id', '0')
+    face = Face.objects.get(id=face_id)
+    face.name = request.POST.get('name', 'Unknown')
+    face.save()
+    return HttpResponse()
 
 
 def photo_view(request, photo_id=0):
@@ -29,9 +39,8 @@ def photo_view(request, photo_id=0):
     if photo.published != 'public':
         render(request, 'error.html', context={'error_type': '403 Forbiddon'})
 
-    faces = get_faces(str(photo.image))
     return render(request, 'photo.html',
-                  context={'photo': photo, 'faces': faces})
+                  context={'photo': photo, 'faces': photo.faces.all()})
 
 
 def add_view(request, model="photos"):
@@ -48,6 +57,9 @@ def add_view(request, model="photos"):
         if form.is_valid():
             the_model = form.save()
             if model == "photos":
+                faces = get_faces(str(the_model.image))
+                for f in faces:
+                    the_model.faces.add(f)
                 return render(request, 'photo.html', context={
                     'photo': the_model
                 })
@@ -88,7 +100,6 @@ def edit_view(request, model="photos", model_id=0):
                     'photo': the_model
                 })
             elif model == "album":
-                print form.cleaned_data
                 the_model = form.save()
                 return render(request, 'album.html', context={
                     'album': the_model

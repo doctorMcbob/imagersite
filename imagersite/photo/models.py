@@ -22,9 +22,8 @@ class Face(models.Model):
 class Photos(models.Model):
     faces = models.ManyToManyField(
         Face,
-        related_name='photos',
+        related_name='face',
         blank=True,
-        null=True
     )
     image = models.ImageField(upload_to='photo_files/%y-%m-%d')
     user = models.ForeignKey(User, null=False)

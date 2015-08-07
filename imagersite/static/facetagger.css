@@ -1,0 +1,42 @@
+.photo_container {
+    width: 25%;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+}
+
+.show-input {
+    top: 50%;
+    left: 0;
+    width: 200px;
+    position: absolute;
+}
+
+.facelabel {
+    position: absolute;
+    cursor: pointer;
+    text-align: left;
+}
+.facelabel .borde {
+    border: solid 4px #FFFF00;
+}
+.facelabel .name {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 12px;
+    padding: 6px;
+    color: #444;
+    background-color: #FFFF00
+}
+.delete-btn {
+    position: absolute;
+    right: 0px;
+    bottom: -20px;
+    font-size: 12px;
+}

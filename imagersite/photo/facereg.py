@@ -9,7 +9,7 @@ def get_faces(path):
     with open(path, 'rb') as img:
         bimage = base64.b64encode(img.read())
 
-    Algorithmia.apiKey = 'Simple sim5DuXYJCZpgSU8Tl2NnoD5lNY1'  # 'Simple totally_real_api_key'
+    Algorithmia.apiKey = 'Simple totally_real_api_key'
     result = Algorithmia.algo('/ANaimi/FaceDetection').pipe(bimage)
 
     faces = []
@@ -21,14 +21,5 @@ def get_faces(path):
         face.width = rect['width']
         face.height = rect['height']
         faces.append(face)
-    for face in faces:
-        face.save()
+        Face.save(face)
     return faces
-
-
-def set_faces(request, photo_id):
-    face_id = request.POST.get('photo_id', '0')
-    face = Face.objects.get(id=face_id)
-    face.name = Face.objects.get('name', 'Unknown')
-    face.save()
-    return face
