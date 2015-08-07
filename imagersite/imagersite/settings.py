@@ -24,7 +24,7 @@ SECRET_KEY = '&@i78447tmxgbotjp(_@cap#(kcqa+8!w=34vef2q@7l8b62$!'
     #^ change to os.environ.get(...later)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
