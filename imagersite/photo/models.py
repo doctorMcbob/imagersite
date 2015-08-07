@@ -1,15 +1,17 @@
 from __future__ import unicode_literals
-from django.db import models
+# from django.db import models
 from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
-from django.contrib.gis.db import models as geomodels
+from django.contrib.gis.db import models as models
+# from django.contrib.gis.db import models as geomodels
+
 
 @python_2_unicode_compatible
 class Photos(models.Model):
     image = models.ImageField(upload_to='photo_files/%y-%m-%d')
     user = models.ForeignKey(User, null=False)
     title = models.CharField(max_length=256)
-    location = models.PointField(null=True, blank=True)
+    location = models.PointField(srid=900913, null=True, blank=True)
     objects = models.GeoManager()
     description = models.TextField()
     published = models.CharField(
