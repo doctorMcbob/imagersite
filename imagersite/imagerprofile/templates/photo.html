@@ -1,10 +1,50 @@
 {% extends "base.html" %}
 
 {% block main %}
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script type="text/javascript" src="//algorithmia.com/v1/clients/js/algorithmia-0.2.0.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert-dev.js"></script>
+  <script src="/static/facetagger.js" type="text/javascript"></script>
+  <link rel='stylesheet' type='text/css' href="/static/facetagger.css"/>
+
   <main>
     {% include "include_photo.html" %}
     <p> Photo taken by <a href="../../profile/{{ photo.user.id }}"></a> {{ photo.user.username }} </p>
+
+     <script type="text/javascript">
+
+      $(document).ready(function(){
+        var screenImage = $(".image");
+        var theImage = new Image();
+        theImage.src = screenImage.attr("src");
+        var originalW = theImage.width;
+        var originalH = theImage.height;
+        FaceTagger.init({
+          container: ".photo_container",
+          labelUrl: "faces",
+          csrf: "{{ csrf_token }}",
+          originalWidth: originalW,
+          originalHeight: originalH,
+          newWidth: $(".photo_container img").width(),
+          newHeight: $(".photo_container img").height()
+        });
+        {% for f in faces %}
+          var face = {
+            id: {{f.id}},
+            name: "{{f.name}}",
+            x: {{f.x}},
+            y: {{f.y}},
+            width: {{f.width}},
+            height: {{f.height}}
+            };
+          FaceTagger.make(face);
+        {% endfor %}});
+    </script>
+
   </main>
+
 {% endblock %}
 
 {% block nav %}

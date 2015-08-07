@@ -21,14 +21,5 @@ def get_faces(path):
         face.width = rect['width']
         face.height = rect['height']
         faces.append(face)
-    for face in faces:
-        face.save()
+        Face.save(face)
     return faces
-
-
-def set_faces(request, photo_id):
-    face_id = request.POST.get('photo_id', '0')
-    face = Face.objects.get(id=face_id)
-    face.name = Face.objects.get('name', 'Unknown')
-    face.save()
-    return face
