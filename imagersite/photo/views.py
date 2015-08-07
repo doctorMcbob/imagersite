@@ -38,7 +38,6 @@ def photo_view(request, photo_id=0):
                       context={'error_type': '404 Not Found'})
     if photo.published != 'public':
         render(request, 'error.html', context={'error_type': '403 Forbiddon'})
-
     return render(request, 'photo.html',
                   context={'photo': photo, 'faces': photo.faces.all()})
 
@@ -93,17 +92,19 @@ def edit_view(request, model="photos", model_id=0):
         })
 
     if request.method == "POST":
+        print "here"
         if form.is_valid():
+            print "validated"
             if model == "photos":
                 the_model = form.save()
-                return render(request, 'photo.html', context={
-                    'photo': the_model
-                })
+                faces = get_faces(str(the_model.image))
+                the_model.faces.clear()
+                for f in faces:
+                    the_model.faces.add(f)
+                return redirect('photo_page', photo_id=the_model.id)
             elif model == "album":
                 the_model = form.save()
-                return render(request, 'album.html', context={
-                    'album': the_model
-                })
+                return redirect('album_page', album_id=the_model.id)
 
     return render(request, 'edit.html', context={
         'form': form,
