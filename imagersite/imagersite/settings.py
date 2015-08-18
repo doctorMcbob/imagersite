@@ -103,7 +103,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         # 'NAME': os.path.join(BASE_DIR, 'db.postgis'),
-        'NAME': 'djimager',
+        'NAME': 'imgr',
         'USER': 'wesleywooten',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',

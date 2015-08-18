@@ -7,7 +7,9 @@
       <ul>
         {% for photo in album.photos.all %}
           <li>
-            {% include "include_photo.html" %}
+            <a href="{% url 'photo_page' photo_id=photo.id %}">
+              {% include "include_photo.html" %}
+            </a>
           </li>
         {% endfor %}
       </ul>
@@ -16,10 +18,7 @@
 {% endblock %}
 
 {% block nav %}
-  <ul>
-    {% if user == album.user %}
-    <li><a href="/images/album/{{ album.id }}/edit">Edit</a></li>
-    {% endif %}
-    <li><a href="/profile">Profiles</a></li>
-  </ul>
+  {% if user.is_authenticated %}
+    <li><a href="{% url 'edit_page' model='album' model_id=album.id %}">Edit</a></li>
+  {% endif %}
 {% endblock %}
