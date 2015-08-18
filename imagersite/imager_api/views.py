@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from imager_images.models import Photos
+from photo.models import Photos
 from serializers import PhotoSerializer
 from django.db.models import Q
 

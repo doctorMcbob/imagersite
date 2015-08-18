@@ -1,4 +1,4 @@
-from imager_images.models import Photos
+from photo.models import Photos
 from rest_framework import serializers
 
 
