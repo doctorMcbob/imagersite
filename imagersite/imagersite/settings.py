@@ -49,6 +49,8 @@ INSTALLED_APPS = (
     'registration',
     'imagerprofile',
     'photo',
+    'imager_api',
+    'rest_framework',
     #delete this before deploying V
     'debug_toolbar',
     'djgeojson',

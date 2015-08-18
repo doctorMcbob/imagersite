@@ -26,7 +26,8 @@ urlpatterns = [
     # url(r'^accounts/login', include('registration.backends.default.urls')),
     # url(r'^accounts/logout', include('registration.backends.default.urls')),
     url(r'^profile/', include('imagerprofile.urls')),
-    url(r'^images/', include('photo.urls'))
+    url(r'^images/', include('photo.urls')),
+    url(r'^api/v1/', include('imager_api.urls')),
 ]
 
 if settings.DEBUG:
