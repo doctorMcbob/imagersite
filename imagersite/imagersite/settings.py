@@ -49,6 +49,8 @@ INSTALLED_APPS = (
     'registration',
     'imagerprofile',
     'photo',
+    'imager_api',
+    'rest_framework',
     #delete this before deploying V
     'debug_toolbar',
     'djgeojson',
@@ -101,8 +103,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         # 'NAME': os.path.join(BASE_DIR, 'db.postgis'),
-        'NAME': 'test',
-        'USER': 'james',
+        'NAME': 'djimager',
+        'USER': 'wesleywooten',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
