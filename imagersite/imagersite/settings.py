@@ -29,13 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-def show_toolbar(request):
-    return True
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
-}
-# DELETE THAT TOO Before depploy^
-
 
 # Application definition
 
@@ -51,8 +44,6 @@ INSTALLED_APPS = (
     'photo',
     'imager_api',
     'rest_framework',
-    #delete this before deploying V
-    'debug_toolbar',
     'djgeojson',
     'django.contrib.gis',
 )
@@ -101,24 +92,14 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        # 'NAME': os.path.join(BASE_DIR, 'db.postgis'),
-        'NAME': 'imgr',
-        'USER': 'wesleywooten',
-        'PASSWORD': 'password',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'imagerdb',
+        'USER': "",
+        'PASSWORD': "",
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-
-# working version:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -147,17 +128,19 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
 # Email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'xxx.@gmail.com'
-EMAIL_HOST_PASSWORD = 'password123'
-EMAIL_PORT = 123
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_USER = 'makeitadjangomoment.@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_PORT = 587
 EMAIL_FILE_PATH = 'emails'
 
 
 # For django-registration-redux
 ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
